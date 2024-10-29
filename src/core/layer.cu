@@ -3,7 +3,7 @@
 #include "cuda_runtime.h"
 #include <iostream>
 
-__global__ void forward(float* input, float* output, float* bias, float* weights, int input_size, int output_size, int batch_size) {
+__global__ void forwardKernel(float* input, float* output, float* bias, float* weights, int input_size, int output_size, int batch_size) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
     if (idx < batch_size * output_size) {
         int batch_idx = idx / output_size;
